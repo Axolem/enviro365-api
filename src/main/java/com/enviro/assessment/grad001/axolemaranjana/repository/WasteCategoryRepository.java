@@ -1,4 +1,7 @@
 package com.enviro.assessment.grad001.axolemaranjana.repository;
 
-public interface WasteCategoryRepository {
+import com.enviro.assessment.grad001.axolemaranjana.model.WasteCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface WasteCategoryRepository extends JpaRepository<WasteCategory, Long> {
 }
