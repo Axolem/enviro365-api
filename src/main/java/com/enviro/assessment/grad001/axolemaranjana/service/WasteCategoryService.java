@@ -13,11 +13,38 @@ public class WasteCategoryService {
     @Autowired
     private WasteCategoryRepository wasteCategoryRepository;
 
-    public List<WasteCategory> getAllCategories(){
+    public List<WasteCategory> getAllCategories() {
         return wasteCategoryRepository.findAll();
     }
 
-    public Optional<WasteCategory> getCategoryById(Long id){
+    public Optional<WasteCategory> getCategoryById(Long id) {
         return wasteCategoryRepository.findById(id);
+    }
+
+    public WasteCategory createWasteCategory(WasteCategory category) {
+        return wasteCategoryRepository.save(category);
+    }
+
+    public WasteCategory updateWasteCategory(Long id, WasteCategory newCategory) {
+        Optional<WasteCategory> toBeUpdated = getCategoryById(id);
+
+        if (toBeUpdated.isEmpty()) {
+            throw new RuntimeException("Category with id: " + id + " not found.");
+        }
+
+        newCategory.setId(id);
+        newCategory.setCreatedAt(toBeUpdated.get().getCreatedAt());
+        return wasteCategoryRepository.save(newCategory);
+    }
+
+    public Optional<WasteCategory> deleteWasteCategory(Long id) {
+        Optional<WasteCategory> toBeDeleted = getCategoryById(id);
+
+        if (toBeDeleted.isEmpty()) {
+            throw new RuntimeException("Category with id: " + id + " not found.");
+        }
+
+        wasteCategoryRepository.deleteById(id);
+        return toBeDeleted;
     }
 }
