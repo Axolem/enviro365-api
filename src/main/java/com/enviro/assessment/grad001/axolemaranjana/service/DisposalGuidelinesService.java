@@ -1,6 +1,5 @@
 package com.enviro.assessment.grad001.axolemaranjana.service;
 
-import com.enviro.assessment.grad001.axolemaranjana.exception.NotFoundException;
 import com.enviro.assessment.grad001.axolemaranjana.model.DisposalGuideline;
 import com.enviro.assessment.grad001.axolemaranjana.model.WasteCategory;
 import com.enviro.assessment.grad001.axolemaranjana.repository.DisposalGuidelinesRepository;
