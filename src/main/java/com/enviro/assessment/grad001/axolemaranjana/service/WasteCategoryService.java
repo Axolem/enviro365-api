@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WasteCategoryService {
@@ -14,5 +15,9 @@ public class WasteCategoryService {
 
     public List<WasteCategory> getAllCategories(){
         return wasteCategoryRepository.findAll();
+    }
+
+    public Optional<WasteCategory> getCategoryById(Long id){
+        return wasteCategoryRepository.findById(id);
     }
 }
