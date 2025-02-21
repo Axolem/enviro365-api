@@ -11,7 +11,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "waste_category")
+@Entity
+@Table(name = "waste_category")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
@@ -25,13 +26,13 @@ public class WasteCategory {
 
     @Column(length = 100, unique = true)
     @NotNull(message = "'name' can not be null")
-    @NotBlank(message = "'name' is mandatory" )
+    @NotBlank(message = "'name' is mandatory")
     @Size(min = 2, max = 100, message = "'name' must be between 2 and 100 characters")
     private String name;
 
     @Column(length = 500)
     @NotNull(message = "'description' can not be null")
-    @NotBlank(message = "'description' is mandatory" )
+    @NotBlank(message = "'description' is mandatory")
     @Size(min = 2, max = 100, message = "'description' must be between 2 and 500 characters")
     private String description;
 
