@@ -52,6 +52,12 @@ public class WasteCategory {
     )
     private Set<DisposalGuideline> disposalGuidelines;
 
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "category"
+    )
+    private Set<RecyclingTip> recyclingTips;
+
     // Need this for the createNewDisposalGuideline to work
     public WasteCategory(Long id){
         this.id = id;
