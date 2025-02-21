@@ -1,6 +1,7 @@
 package com.enviro.assessment.grad001.axolemaranjana.service;
 
 import com.enviro.assessment.grad001.axolemaranjana.model.WasteCategory;
+import com.enviro.assessment.grad001.axolemaranjana.repository.DisposalGuidelinesRepository;
 import com.enviro.assessment.grad001.axolemaranjana.repository.WasteCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,10 @@ import java.util.Optional;
 public class WasteCategoryService {
     @Autowired
     private WasteCategoryRepository wasteCategoryRepository;
+
+    // I should use the service instead?
+    @Autowired
+    private DisposalGuidelinesRepository guidelinesRepository;
 
     public List<WasteCategory> getAllCategories() {
         return wasteCategoryRepository.findAll();
@@ -46,5 +51,9 @@ public class WasteCategoryService {
 
         wasteCategoryRepository.deleteById(id);
         return toBeDeleted;
+    }
+
+    public Optional<WasteCategory> getCategoryByIdAndGuidelines(Long id)    {
+        return wasteCategoryRepository.findByIdWithGuidelines(id);
     }
 }

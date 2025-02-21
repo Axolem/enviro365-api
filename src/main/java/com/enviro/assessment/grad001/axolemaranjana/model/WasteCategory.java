@@ -1,5 +1,6 @@
 package com.enviro.assessment.grad001.axolemaranjana.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "waste_category")
@@ -44,5 +46,14 @@ public class WasteCategory {
     @Column(nullable = false, name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "wasteCategoryId"
+    )
+    private Set<DisposalGuideline> disposalGuidelines;
 
+    // Need this for the createNewDisposalGuideline to work
+    public WasteCategory(Long id){
+        this.id = id;
+    }
 }

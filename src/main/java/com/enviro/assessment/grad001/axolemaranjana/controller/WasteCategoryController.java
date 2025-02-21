@@ -32,6 +32,15 @@ public class WasteCategoryController {
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/guidelines")
+    public ResponseEntity<Optional<WasteCategory>> getCategoryByIdAndGuidelines(@PathVariable Long id) {
+        Optional<WasteCategory> category = categoryService.getCategoryByIdAndGuidelines(id);
+        if (category.isEmpty()) {
+            return new ResponseEntity<>(category, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(category, HttpStatus.OK);
+    }
+
     @PostMapping("/")
     public ResponseEntity<WasteCategory> createWasteCategory(@Valid @RequestBody WasteCategory category) {
         return new ResponseEntity<>(categoryService.createWasteCategory(category), HttpStatus.CREATED);
